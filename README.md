@@ -1,6 +1,7 @@
 ## e-minus-docker-chain
 
-Runs the e- compiler under docker.
+1. Runs the e- compiler, created by [0xC0DE6502](https://github.com/0xC0DE6502), in a Docker container.
+2. Runs beebasm to subsequently compile the 6502 assembly into a disk image.
 
 With thanks to:
 
@@ -31,3 +32,12 @@ eg.
 ```
 ./run-compilation.sh tools/e-_releases/v0.6a python python.e-
 ```
+
+## Output
+
+* `e-.exe` creates an assembly file with the suffix `.6502`
+* `beebasm.exe` creates a disk image with the suffix `.ssd`
+
+## Testing
+
+* Test your SSD with jsbeeb at: https://bbc.godbolt.org/

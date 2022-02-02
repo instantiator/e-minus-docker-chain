@@ -1,3 +1,4 @@
 docker-wine
 tools/
 .vscode
+.DS_Store
