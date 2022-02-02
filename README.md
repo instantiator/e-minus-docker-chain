@@ -1,7 +1,9 @@
 ## e-minus-docker-chain
 
-1. Runs the e- compiler, created by [0xC0DE6502](https://github.com/0xC0DE6502), in a Docker container.
-2. Runs beebasm to subsequently compile the 6502 assembly into a disk image.
+Docker support for e- and beebasm.
+
+1. Runs the e- compiler, created by 0xC0DE6502, to create 6502 assembly.
+2. Runs beebasm to compile that 6502 assembly into an executable in a disk image.
 
 With thanks to:
 
@@ -23,11 +25,13 @@ This script requires that you specify a few directories. The syntax is:
 ./run-compilation.sh <repo-directory> <relative-working-directory> <source-filename>
 ```
 
-* `<repo-directory>` - the directory at the root of all sources for the compilation (including `e-.exe` and the `lib` directory provided by the e- release)
+* `<repo-directory>` - the directory at the root of all sources for the compilation
 * `<relative-working-directory>` - relative to the repo-directory, the location to be in to start compilation
 * `<source-filename>` - the source filename to compile
 
-eg.
+NB. `<repo-directory>` is mounted inside the docker image that will do the work, and then the compiler itself is invoked from within `<relative-working-directory>`. In this way, code that has relative paths in it (eg. the inclusion of system libraries from within `python.h.e-`) can still find what it's looking for.
+
+eg. to compile the python sample game:
 
 ```
 ./run-compilation.sh tools/e-_releases/v0.6a python python.e-
