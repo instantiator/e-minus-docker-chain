@@ -4,7 +4,7 @@ set -e
 set -o pipefail
 
 if [ "$#" -ne 4 ]; then
-  echo "Usage: ./run-compilation.sh <e-release> <repo-directory> <relative-working-directory> <source-filename>"
+  echo "Usage: ./run-compilation.sh <e-release> <source-root> <relative-working> <source-filename>"
   echo "   eg. ./run-compilation.sh v0.6a tools/e-_releases/v0.6a python python.e-"
   exit 1
 fi
