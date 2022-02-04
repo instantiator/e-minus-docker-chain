@@ -36,15 +36,15 @@ cd e-minus-docker-chain
 This script requires that you specify a few directories. The syntax is:
 
 ```bash
-./run-compilation.sh <repo-directory> <relative-working-directory> <source-filename>
+./run-compilation.sh <e-release> <repo-directory> <relative-working-directory> <source-filename>
 ```
 
-* `<release>` - indicates the e- release to use - named by folder in the [0xC0DE6502/e-_releases](https://github.com/0xC0DE6502/e-_releases) repository eg. `v0.6a`
-* `<repo-directory>` - the source directory for the compilation
-* `<relative-working-directory>` - the location to be in to start compilation, relative to the repo-directory
+* `<e-release>` indicates the e- release to use - named by folder in the [0xC0DE6502/e-_releases](https://github.com/0xC0DE6502/e-_releases) repository eg. `v0.6a`
+* `<repo-directory>` is the source root directory for the compilation
+* `<relative-working-directory>` is the location to be in to start compilation, relative to the repo-directory
 * `<source-filename>` - the source filename to compile
 
-`<repo-directory>` is mounted inside the docker image, so it needs to contain all the source code and libraries.
+`<repo-directory>` is mounted inside the docker image, so it needs to encompass all the source code and libraries that will be used for compilation.
 
 The compiler itself is invoked from within `<relative-working-directory>`. In this way, code that has relative paths in it (eg. the inclusion of system libraries from within `python.h.e-`) can still find what it's looking for.
 
