@@ -3,9 +3,9 @@
 set -e
 set -o pipefail
 
-if [ "$#" -ne 3 ]; then
-  echo "Usage: ./run-compilation.sh <repo-directory> <relative-working-directory> <source-filename>"
-  echo "   eg. ./run-compilation.sh tools/e-_releases/v0.6a python python.e-"
+if [ "$#" -ne 4 ]; then
+  echo "Usage: ./run-compilation.sh <release> <repo-directory> <relative-working-directory> <source-filename>"
+  echo "   eg. ./run-compilation.sh v0.6a tools/e-_releases/v0.6a python python.e-"
   exit 1
 fi
 
@@ -19,9 +19,10 @@ get_abs_filename() {
   echo "$(cd "$(dirname "$1")" && pwd)/$(basename "$1")"
 }
 
-SRC_PATH=$(get_abs_filename $1)
-WORKING_PATH=$2
-FILENAME=$3
+E_RELEASE=$1
+SRC_PATH=$(get_abs_filename $2)
+WORKING_PATH=$3
+FILENAME=$4
 
 if [ ! -d "$SRC_PATH" ]; then
   echo "$SRC_PATH not found, or not a directory."
@@ -39,4 +40,4 @@ fi
   --volume=$(pwd)/tools:/home/tools \
   --volume=$(pwd)/scripts:/home/scripts \
   --volume=$SRC_PATH:/home/src \
-  /home/scripts/compile.sh $WORKING_PATH $FILENAME
+  /home/scripts/compile.sh $E_RELEASE $WORKING_PATH $FILENAME
